@@ -12,8 +12,11 @@ model_choice = st.toggle("Use 24-hour model (M3)")
 
 age = st.number_input("Age", min_value=30, max_value=90, value=65)
 admission_nihss = st.number_input("Admission NIHSS", min_value=0, max_value=42, value=10)
-ivt = st.selectbox("IVT", [0, 1])
-sex = st.selectbox("Sex", [0, 1])
+ivt_label = st.selectbox("IVT", ["IVT not given", "IVT given"])
+ivt = 0 if ivt_label == "IVT not given" else 1
+
+sex_label = st.selectbox("Sex", ["Female", "Male"])
+sex = 0 if sex_label == "Female" else 1
 
 if model_choice:
     day_nihss = st.number_input("24-hour NIHSS", min_value=0, max_value=42, value=10)
@@ -54,7 +57,7 @@ if not row.empty:
     ivt_contrib = (row["prob_IVT"].values[0] - baseline_prob) * 100
     sex_contrib = (row["prob_sex"].values[0] - baseline_prob) * 100
 
-    st.subheader("Feature contributions")
+    st.subheader("Feature Contributions to this Prediction:")
     st.write("*Derived from SHAP values*")
 
     st.write(f"Age: {age_contrib:+.1f}%")
