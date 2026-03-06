@@ -4,7 +4,7 @@ import pandas as pd
 baseline_df = pd.read_csv("baseline_bootstrap_predictions.csv")
 m3_df = pd.read_csv("baseline_m3_bootstrap_predictions.csv")
 
-st.title("Probability of an Unfavourable Outcome at 90-days")
+st.title("Posterior Circulation Stroke Planned for EVT: Probability of an Unfavourable Outcome at 90-days")
 st.write("Unfavourable outcome defined as mRS >2 at 90-days")
 st.write("Repository for model development available at: https://github.com/PierogiCode/PCF.git")
 
